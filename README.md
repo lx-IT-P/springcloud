@@ -1,2 +1,1 @@
-# practical-project
-本项目是集成springcloud以及当前最流行技术进行的一个实战项目
+
