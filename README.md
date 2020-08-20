@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# practical-project
-本项目是集成springcloud以及当前最流行技术进行的一个实战项目
-=======
 
 # practical-project
 本项目是集成springcloud以及当前最流行技术进行的一个实战项目
@@ -157,5 +153,4 @@ mall项目全套学习教程连载中，关注公众号「**macrozheng**」第�
 [Apache License 2.0](https://github.com/macrozheng/mall-swarm/blob/master/LICENSE)
 
 Copyright (c) 2018-2020 macrozheng
->>>>>>> frist commit
->>>>>>> firist commit
+
