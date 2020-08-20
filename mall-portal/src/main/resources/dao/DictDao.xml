@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.macro.mall.portal.dao.DictMapper">
+
+    <resultMap id="BaseResultMap" type="com.macro.mall.model.DictDO">
+        <result column="id" property="id"/>
+        <result column="param_code" property="paramCode"/>
+        <result column="param_value" property="paramValue"/>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM
+            mall_dict
+    </select>
+</mapper>

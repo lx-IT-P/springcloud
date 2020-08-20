@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <!--应用名称-->
+    <property name="APP_NAME" value="mall-portal"/>
+    <!--日志文件保存路径-->
+    <property name="LOG_FILE_PATH" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/logs}"/>
+    <contextName>${APP_NAME}</contextName>
+    <!--每天记录日志到文件appender-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_PATH}/${APP_NAME}-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <!-- This is the kafkaAppender -->
+    <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <topic>applog</topic>
+        <!-- we don't care how the log messages will be partitioned  -->
+        <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy" />
+
+        <!-- use async delivery. the application threads are not blocked by logging -->
+        <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
+
+        <!-- each <producerConfig> translates to regular kafka-client config (format: key=value) -->
+        <!-- producer configs are documented here: https://kafka.apache.org/documentation.html#newproducerconfigs -->
+        <!-- bootstrap.servers is the only mandatory producerConfig -->
+        <producerConfig>bootstrap.servers=192.168.217.130:9092</producerConfig>
+        <!-- don't wait for a broker to ack the reception of a batch.  -->
+        <producerConfig>acks=0</producerConfig>
+        <!-- wait up to 1000ms and collect log messages before sending them as a batch -->
+        <producerConfig>linger.ms=1000</producerConfig>
+        <!-- even if the producer buffer runs full, do not block the application but start to drop messages -->
+        <producerConfig>max.block.ms=0</producerConfig>
+        <!-- define a client-id that you use to identify yourself against the kafka broker -->
+        <producerConfig>client.id=${HOSTNAME}-${CONTEXT_NAME}-logback-relaxed</producerConfig>
+
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="kafkaAppender" />
+    </root>
+
+
+    <!--输出到logstash的appender-->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:9500</destination>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <!--使用logstash时打开-->
+        <appender-ref ref="LOGSTASH"/>
+    </root>
+</configuration>

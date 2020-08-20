@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.macro.mall.portal.dao.PmsProductDao">
+    <resultMap id="BaseResultMap" type="com.macro.mall.model.PmsProduct">
+        <id column="product_categoryName" jdbcType="BIGINT" property="productCategoryName" />
+        <result column="brand_id" jdbcType="BIGINT" property="brandId" />
+        <result column="delete_status" jdbcType="VARCHAR" property="deleteStatus" />
+        <result column="publish_status" jdbcType="INTEGER" property="publishStatus" />
+        <result column="product_id" jdbcType="INTEGER" property="productId" />
+        <result column="promotion_price" jdbcType="VARCHAR" property="promotionPrice" />
+        <result column="gift_growth" jdbcType="INTEGER" property="giftGrowth" />
+        <result column="sub_title" jdbcType="INTEGER" property="subTitle" />
+        <result column="original_price" jdbcType="INTEGER" property="originalPrice" />
+        <result column="low_stock" jdbcType="INTEGER" property="lowStock" />
+        <result column="product_sku_id" jdbcType="INTEGER" property="productSkuId" />
+        <result column="detail_mobile_html" jdbcType="INTEGER" property="detailMobileHtml" />
+    </resultMap>
+    <select id="list" resultType="com.macro.mall.model.PmsProduct" resultMap="BaseResultMap">
+    select p.*,o.product_sku_id
+        FROM pms_product p
+        left join oms_cart_item o on o.product_id = p.id
+        WHERE p.id=#{id};
+    </select>
+
+
+</mapper>
