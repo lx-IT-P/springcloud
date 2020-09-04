@@ -131,8 +131,8 @@
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
     </dependencies>
-
     <dependencyManagement>
+
         <dependencies>
             <!--Spring Cloud 相关依赖-->
             <dependency>
@@ -250,6 +250,8 @@
                 <version>${minio.version}</version>
             </dependency>
         </dependencies>
+
     </dependencyManagement>
+
 
 </project>
