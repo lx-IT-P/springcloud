@@ -1,11 +1,11 @@
 
 # practical-project
-本项目是集成springcloud以及当前最流行技术进行的一个实战项目
+本项目是一线大厂级别搭建亿级流量高可用，高并发大规模分布式系统实战内容，在mall商城项目的基础上，以springcloud为技术栈重构的微服务系统，实现高可用，高并发的大规模分布式系统
+同时提供后台管理系统以及移动端商城，是一个实战非常强的开源项目。
 
 # mall-swarm
 
 <p>
-  <a href="#公众号"><img src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-macrozheng-blue.svg" alt="公众号"></a>
   <a href="https://github.com/macrozheng/mall"><img src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/badge/%E5%90%8E%E5%8F%B0%E9%A1%B9%E7%9B%AE-mall-blue.svg" alt="后台项目"></a>
   <a href="https://github.com/macrozheng/mall-admin-web"><img src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/badge/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE-mall--admin--web-green.svg" alt="前端项目"></a>
   <a href="#公众号"><img src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/badge/%E4%BA%A4%E6%B5%81-%E5%BE%AE%E4%BF%A1%E7%BE%A4-2BA245.svg" alt="交流"></a>
@@ -142,11 +142,8 @@ nginx | 1.10 | http://nginx.org/en/download.html
 
 ## 公众号
 
-mall项目全套学习教程连载中，关注公众号「**macrozheng**」第一时间获取。
+mall项目全套学习教程连载中，关注公众号「**码上代码**」第一时间获取。
 
-加微信群交流，公众号后台回复「**加群**」即可。
-
-![公众号图片](http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/banner/qrcode_for_macrozheng_258.jpg)
 
 ## 许可证
 
